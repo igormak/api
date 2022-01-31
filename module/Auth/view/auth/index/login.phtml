@@ -1,0 +1,36 @@
+
+
+<?php
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s><i class="fa fa-check-circle"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        &times;
+    </button>
+    ')
+    ->setMessageSeparatorString('</li><li>')
+    ->setMessageCloseString('</li></ul></div>');
+
+echo $flash->render('error',   array('alert', 'alert-danger'));
+echo $flash->render('info',    array('alert', 'alert-info'));
+echo $flash->render('default', array('alert', 'alert-warning'));
+echo $flash->render('success', array('alert', 'alert-success'));
+?>
+
+<form method="POST" action="<?=$this->url('auth', array('action' => 'login'))?>">
+    <div class="login-block">
+        <div class="login-block-wrap">
+            <h1>Авторизация</h1>
+            <input type="text" value="" placeholder="Логин" id="username" />
+            <input type="password" value="" placeholder="Пароль" id="password" />
+        </div>
+        <div class="login-group">
+            <label for="check">
+                <input id="check" type="checkbox" class="check" checked>
+                Я ознакомился с <a href="<?=$this->url('main', array('action' => 'agreement'))?>" target="_blank" style="color: red;">договором</a> и принимаю условия ипользования сайта
+            </label>
+        </div>
+        <button>Войти</button>
+    </div>
+</form>
+
+

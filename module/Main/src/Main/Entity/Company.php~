@@ -1,0 +1,56 @@
+<?php
+
+namespace Main\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Company
+ *
+ * @ORM\Table(name="company", indexes={@ORM\Index(name="FK_company_user", columns={"user_id"})})
+ * @ORM\Entity
+ */
+class Company
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=50, nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="desc", type="text", length=65535, nullable=true)
+     */
+    private $desc;
+
+    /**
+     * @var \Main\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Main\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
+
+
+}

@@ -1,0 +1,131 @@
+<?php
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        &times;
+    </button>
+    <ul></ul>')
+    ->setMessageSeparatorString('</li><li>')
+    ->setMessageCloseString('</li></ul></div>');
+
+echo $flash->render('error',   array('alert', 'alert-dismissable', 'alert-danger'));
+echo $flash->render('info',    array('alert', 'alert-dismissable', 'alert-info'));
+echo $flash->render('default', array('alert', 'alert-dismissable', 'alert-warning'));
+echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success'));
+?>
+
+<?php $page_lang_mas = array(); foreach($page_lang as $item){ $page_lang_mas[$item->getLang()] = $item; } ?>
+
+<div class="bs-docs-section">
+    <div class="well">
+
+        <form method="post" name="PageEditForm" class="bs-example form-horizontal" enctype="multipart/form-data"
+              action="<?=$this->url('admin/default', array('controller' => 'page', 'action' => 'edit-category', 'id' => $page->getId()))?>"
+              id="PageEditCategoryForm">
+            <h1>Редактировать <?=$page->getName()?></h1>
+            <!-- EN -->
+            <!-- <h2>English</h2>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="name">SEO Meta Title *</label>
+                <div class="col-lg-10">
+                    <input type="text" name="meta_title_en" class="form-control" placeholder="English" required value="<?=$page_lang_mas['en']->getTegTitle()?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="name">SEO Meta Description</label>
+                <div class="col-lg-10">
+                    <input type="text" name="meta_description_en" class="form-control" placeholder="English" value="<?=$page_lang_mas['en']->getTegDescription()?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="name">SEO Meta Keywords</label>
+                <div class="col-lg-10">
+                    <input type="text" name="meta_keywords_en" class="form-control" placeholder="English" value="<?=$page_lang_mas['en']->getTegKeywords()?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="name">Содержание</label>
+                <div class="col-lg-10">
+                    <textarea name="description_en" class="form-control"><?=$page_lang_mas['en']->getDescription()?></textarea>
+                </div>
+            </div> -->
+
+            <!-- IT -->
+            <!-- <h2>Italiano</h2>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="name">SEO Meta Title *</label>
+                <div class="col-lg-10">
+                    <input type="text" name="meta_title_it" class="form-control" placeholder="Italiano" required value="<?=$page_lang_mas['it']->getTegTitle()?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="name">SEO Meta Description</label>
+                <div class="col-lg-10">
+                    <input type="text" name="meta_description_it" class="form-control" placeholder="Italiano" value="<?=$page_lang_mas['it']->getTegDescription()?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="name">SEO Meta Keywords</label>
+                <div class="col-lg-10">
+                    <input type="text" name="meta_keywords_it" class="form-control" placeholder="Italiano" value="<?=$page_lang_mas['it']->getTegKeywords()?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="name">Содержание</label>
+                <div class="col-lg-10">
+                    <textarea name="description_it" placeholder="Italiano" class="form-control"><?=$page_lang_mas['it']->getDescription()?></textarea>
+                </div>
+            </div> -->
+
+            <!-- RU -->
+            <h2>Русский</h2>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="name">SEO Meta Title *</label>
+                <div class="col-lg-10">
+                    <input type="text" name="meta_title_ru" class="form-control" placeholder="Русский" required value="<?=$page_lang_mas['ru']->getTegTitle()?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="name">SEO Meta Description</label>
+                <div class="col-lg-10">
+                    <input type="text" name="meta_description_ru" placeholder="Русский" class="form-control" value="<?=$page_lang_mas['ru']->getTegDescription()?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="name">SEO Meta Keywords</label>
+                <div class="col-lg-10">
+                    <input type="text" name="meta_keywords_ru" placeholder="Русский" class="form-control" value="<?=$page_lang_mas['ru']->getTegKeywords()?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="photo">Фото</label>
+                <div class="col-lg-10">
+                    <img src="/uploads/img/<?=str_replace('{', '', explode("};", $page_lang_mas['ru']->getDescription())[1])?>" class="img-responsive img-product-228">
+                    <input type="file" name="photo" accept="image/*">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="name">Содержание</label>
+                <div class="col-lg-10">
+                    <textarea name="description_ru" placeholder="Русский" class="form-control"><?=str_replace('{', '', explode("};", $page_lang_mas['ru']->getDescription())[0])?></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10">
+                    <input type="submit" name="submit" id="btn_submit" class="btn btn-primary" value="Сохранить">
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+<script>
+    //CKEDITOR.replace("description_en");
+    //CKEDITOR.replace("description_it");
+    CKEDITOR.replace("description_ru");
+</script>

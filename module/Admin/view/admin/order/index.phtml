@@ -1,0 +1,66 @@
+<?php
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        &times;
+    </button>
+    <ul></ul>')
+    ->setMessageSeparatorString('</li><li>')
+    ->setMessageCloseString('</li></ul></div>');
+
+echo $flash->render('error',   array('alert', 'alert-dismissable', 'alert-danger'));
+echo $flash->render('info',    array('alert', 'alert-dismissable', 'alert-info'));
+echo $flash->render('default', array('alert', 'alert-dismissable', 'alert-warning'));
+echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success'));
+?>
+
+<div class="col-md-12">
+    <div id="save">
+        <!--a href="<?php echo $this->url('admin/default', array('controller' => 'order', 'action' => 'add'));?>" class="btn btn-success">Add order</a-->
+
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>id order</th>
+            <th>Buyer</th>
+            <th>Status</th>
+            <th>Price</th>
+            <th>Date added</th>
+            <th>Function</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($orders as $item){ ?>
+            <tr class="active">
+                <td style="width: 10px;"><?php echo $item->getId() ?></td>
+                <td><?php echo $item->getFirstname() . ' ' . $item->getLastname() ?></td>
+                <td><?php echo $item->getStatus() ?></td>
+                <td>
+                    <?php
+                    $price = 0;
+                    foreach(explode('};', $item->getProduct()) as $item_p){
+                        $mas = explode(';', $item_p);
+                        $price += $mas[1]*$mas[2];
+                    }
+                    echo $price;
+                    ?>
+                </td>
+                <td><?php echo date("d.m.Y", $item->getDate()) ?></td>
+                <td>
+                    <a href="<?php echo $this->url('admin/default', array('controller' => 'order', 'action' => 'look', 'id' =>  $item->getId()));?>" class="btn btn-success btn-xs">Look</a>
+                    <a href="<?php echo $this->url('admin/default', array('controller' => 'order', 'action' => 'edit', 'id' =>  $item->getId()));?>" class="btn btn-primary btn-xs">Edit</a>
+                    <a href="<?php echo $this->url('admin/default', array('controller' => 'order', 'action' => 'remove', 'id' =>  $item->getId()));?>" onclick="return confirm('Удалить запись?');" class="btn btn-danger btn-xs">Delete</a>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+    <?php
+
+    echo $this->paginationControl($orders,
+        'Sliding',
+        'pagination_control', array('route' => $this->url('admin/default', array('controller' => 'order'))));
+
+    ?>
+</div>

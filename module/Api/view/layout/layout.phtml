@@ -1,0 +1,137 @@
+<?php echo $this->doctype(); $auth = $this->identity(); ?>
+
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Admin Panel</title>
+
+        <meta name="author" content="LayoutIt!">
+
+        <link href="/css/admin/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/admin/style.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="/js/admin/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="navbar-header">
+
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                        </button> <a class="navbar-brand" href="<?php echo $this->url('admin/default', array('controller' => 'index'));?>">Magaziller</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <?php if(!empty($auth)){ ?>
+                        <ul class="nav navbar-nav">
+                            <!--li><a href="<?php echo $this->url('admin/default', array('controller' => 'index'));?>">Main</a></li-->
+
+                            <?php if($auth->getRole() != 'manager'){ ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-book"></i> Контент<strong class="caret"></strong></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'page', 'action' => 'edit', 'id' => 1));?>">Главная</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'page', 'action' => 'edit', 'id' => 2));?>">Контакты</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'page', 'action' => 'edit', 'id' => 3));?>">Информация для риэлтора</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'page', 'action' => 'edit', 'id' => 4));?>">Публичный договор оферты</a></li>
+                                    </ul>
+                                </li>
+                            <?php } ?>
+
+                            <?php if($auth->getRole() != 'manager'){ ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home"></i> Недвижимость<strong class="caret"></strong></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'realty', 'action' => 'loadCsv'));?>">Загрузка CSV</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'realty'));?>">Список</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'region'));?>">Регионы</a></li>
+                                    </ul>
+                                </li>
+                            <?php } ?>
+
+                            <?php if($auth->getRole() != 'manager'){ ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> Пользователи<strong class="caret"></strong></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'user'));?>?role=client">Пользователь базы</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'user'));?>?role=manager">Продавец</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'user'));?>?role=content">Администратор</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'user'));?>?role=admin">Супер Администратор</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'user'));?>?role=2">Заблокированные</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'user'));?>?role=employeeCallCenter">Сотрудники колл-центра</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'user'));?>?role=adminCallCenter">Администратор колл-центра</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'user'));?>?activate=1">Необходима активация</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'statistic'));?>">Статистика по сотрудникам</a></li>
+                                    </ul>
+                                </li>
+                            <?php }else{ ?>
+                                <li>
+                                    <a href="<?php echo $this->url('admin/default', array('controller' => 'user', 'action' => 'add'));?>"> Добавить пользователя</a>
+                                </li>
+                            <?php } ?>
+
+                            <?php if($auth->getRole() != 'manager'){ ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i> SEO информация<strong class="caret"></strong></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'page', 'action' => 'edit-seo', 'id' => 1));?>">Главная</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'page', 'action' => 'edit-seo', 'id' => 2));?>">Контакты</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'page', 'action' => 'edit-seo', 'id' => 3));?>">Информация для риэлтора</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'page', 'action' => 'edit-seo', 'id' => 4));?>">Публичный договор оферты</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'page', 'action' => 'edit-seo', 'id' => 5));?>">Авторизация</a></li>
+                                        <li><a href="<?php echo $this->url('admin/default', array('controller' => 'page', 'action' => 'edit-seo', 'id' => 6));?>">Страница недвижимости</a></li>                                    </ul>
+                                </li>
+                            <?php } ?>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$auth->getUsername()?><strong class="caret"></strong></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="<?php echo $this->url('admin/default', array('controller' => 'user', 'action' => 'edit', 'id' => $auth->getId()));?>">Профиль</a></li>
+                                    <li><a href="<?php echo $this->url('auth', array('action' => 'logout'));?>">Выход</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#"></a>
+                            </li>
+                        </ul>
+                        <?php } ?>
+                    </div>
+
+                </nav>
+                <br><br><br><br>
+                <div class="row">
+
+                <?php echo $this->content; ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/admin/scripts.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#time_from").datepicker({ dateFormat: 'dd.mm.yy' });
+            $("#time_till").datepicker({ dateFormat: 'dd.mm.yy' });
+            $("#finishTime").datepicker({ dateFormat: 'dd.mm.yy' });
+        });
+    </script>
+    </body>
+</html>

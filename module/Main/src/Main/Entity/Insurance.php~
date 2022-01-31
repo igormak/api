@@ -1,0 +1,409 @@
+<?php
+
+namespace Main\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Insurance
+ *
+ * @ORM\Table(name="insurance")
+ * @ORM\Entity
+ */
+class Insurance
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="car_id", type="integer", nullable=false)
+     */
+    private $carId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     */
+    private $userId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="number", type="string", length=50, nullable=true)
+     */
+    private $number;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="date", type="integer", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="date_stop", type="integer", nullable=true)
+     */
+    private $dateStop;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="company", type="string", length=50, nullable=true)
+     */
+    private $company;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="price", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $price;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="franchise", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $franchise;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="post", type="text", length=65535, nullable=true)
+     */
+    private $post;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ewa_id", type="integer", nullable=true)
+     */
+    private $ewaId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=50, nullable=true)
+     */
+    private $status;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set carId
+     *
+     * @param integer $carId
+     * @return Insurance
+     */
+    public function setCarId($carId)
+    {
+        $this->carId = $carId;
+    
+        return $this;
+    }
+
+    /**
+     * Get carId
+     *
+     * @return integer 
+     */
+    public function getCarId()
+    {
+        return $this->carId;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     * @return Insurance
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set number
+     *
+     * @param integer $number
+     * @return Insurance
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+    
+        return $this;
+    }
+
+    /**
+     * Get number
+     *
+     * @return integer 
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * Set date
+     *
+     * @param integer $date
+     * @return Insurance
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return integer 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set dateStop
+     *
+     * @param integer $dateStop
+     * @return Insurance
+     */
+    public function setDateStop($dateStop)
+    {
+        $this->dateStop = $dateStop;
+
+        return $this;
+    }
+
+    /**
+     * Get dateStop
+     *
+     * @return integer
+     */
+    public function getDateStop()
+    {
+        return $this->dateStop;
+    }
+
+    /**
+     * Set company
+     *
+     * @param string $company
+     * @return Insurance
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+    
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return string 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     * @return Insurance
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float 
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set franchise
+     *
+     * @param float $franchise
+     * @return Insurance
+     */
+    public function setFranchise($franchise)
+    {
+        $this->franchise = $franchise;
+    
+        return $this;
+    }
+
+    /**
+     * Get franchise
+     *
+     * @return float 
+     */
+    public function getFranchise()
+    {
+        return $this->franchise;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Insurance
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set post
+     *
+     * @param string $post
+     * @return Insurance
+     */
+    public function setPost($post)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return string
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    /**
+     * Set ewaId
+     *
+     * @param integer $ewaId
+     * @return Insurance
+     */
+    public function setEwaId($ewaId)
+    {
+        $this->ewaId = $ewaId;
+
+        return $this;
+    }
+
+    /**
+     * Get ewaId
+     *
+     * @return integer
+     */
+    public function getEwaId()
+    {
+        return $this->ewaId;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Insurance
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function exchangeArray($data)
+    {
+        foreach($data as $key => $val){
+            if(property_exists($this, $key)){
+                $this->$key = ($val !== null) ? $val : null;
+            }
+        }
+    }
+
+    public function getArrayCopy()
+    {
+        return get_object_vars($this);
+    }
+}

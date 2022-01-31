@@ -1,0 +1,279 @@
+<?php
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        &times;
+    </button>
+    <ul></ul>')
+    ->setMessageSeparatorString('</li><li>')
+    ->setMessageCloseString('</li></ul></div>');
+
+echo $flash->render('error',   array('alert', 'alert-dismissable', 'alert-danger'));
+echo $flash->render('info',    array('alert', 'alert-dismissable', 'alert-info'));
+echo $flash->render('default', array('alert', 'alert-dismissable', 'alert-warning'));
+echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success'));
+?>
+
+<?php
+$form->setAttribute('action', $this->url('admin/default', array('controller' => 'product', 'action' => 'add')));
+$form->setAttribute('enctype', 'multipart/form-data');
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+
+<div class="col-md-12">
+    <div class="tabbable" id="tabs-582967">
+        <div style="min-height: 42px">
+        <ul class="nav nav-tabs pull-left" style="margin-bottom: 10px">
+            <li class="active">
+                <a href="#panel1" data-toggle="tab">Основное</a>
+            </li>
+            <li>
+                <a href="#panel2" data-toggle="tab">Доп. Фото</a>
+            </li>
+            <!-- <li>
+                <a href="#panel3" data-toggle="tab">English</a>
+            </li>
+            <li>
+                <a href="#panel4" data-toggle="tab">Italiano</a>
+            </li> -->
+            <li>
+                <a href="#panel5" data-toggle="tab">Русский</a>
+            </li>
+
+
+        </ul>
+
+        <button class="pull-right btn btn-success">Сохранить</button>
+
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane active" id="panel1">
+                <div class="bs-docs-section">
+                    <div class="well">
+
+
+                        <?php
+
+                        echo '<h1>Добавить новый продукт</h1>';
+                        foreach ($form as $element){
+                            echo '<div class="form-group">';
+                            $attributes = $element->getAttributes();
+
+                            if($element->getLabel()){
+                                $element->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
+                                if(isset($attributes['required'])){
+                                    $element->setLabel($element->getLabel() . ' *');
+                                }
+                            }
+
+                            if(isset($attributes['type']) && $attributes['type'] == 'text')
+                            {
+                                echo $this->formLabel($element);
+                                echo '<div class="col-lg-10">';
+                                echo $this->formInput($element);
+                                echo '</div>';
+                            }
+                            elseif(isset($attributes['type']) && $attributes['type'] == 'textatea')
+                            {
+                                echo $this->formLabel($element);
+                                echo '<div class="col-lg-10">';
+                                echo $this->formTextArea($element);
+                                echo '</div>';
+                            }
+                            elseif(isset($attributes['type']) && $attributes['type'] == 'file')
+                            {
+                                echo $this->formLabel($element);
+                                echo '<div class="col-lg-10">';
+                                echo $this->formFile($element);
+                                echo '</div>';
+                            }
+                            elseif(isset($attributes['type']) && $attributes['type'] == 'email')
+                            {
+                                echo $this->formLabel($element);
+                                echo '<div class="col-lg-10">';
+                                echo $this->formEmail($element);
+                                echo '</div>';
+                            }
+                            elseif(isset($attributes['type']) && $attributes['type'] == 'password')
+                            {
+                                echo $this->formLabel($element);
+                                echo '<div class="col-lg-10">';
+                                echo $this->formPassword($element);
+                                echo '</div>';
+                            }
+                            elseif(isset($attributes['type']) && $attributes['type'] == 'select')
+                            {
+                                echo $this->formLabel($element);
+                                echo '<div class="col-lg-10">';
+                                echo $this->formSelect($element);
+                                echo '</div>';
+                            }
+                            else
+                            {
+                                echo '<div class="col-lg-10">';
+                                echo $this->formRow($element);
+                                echo '</div>';
+                            }
+
+                            echo '</div>';
+                        }
+                        //echo '</fieldset>';
+
+                        ?>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="panel2">
+                <div class="bs-docs-section">
+                    <div class="well">
+                <div class="form-group"><label class="col-lg-2 control-label" for="photoAll">Дополнительные фотографий</label><div class="col-lg-10"><input type="file" name="photoAll[]" accept="image/*" multiple="multiple"></div></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="panel3">
+                <div class="bs-docs-section">
+                    <div class="well">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">Имя *</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="name_en" class="form-control" placeholder="English" required value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">SEO Meta Title *</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="meta_title_en" class="form-control" placeholder="English" required value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">SEO Meta Description</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="meta_description_en" class="form-control" placeholder="English" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">SEO Meta Keywords</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="meta_keywords_en" class="form-control" placeholder="English" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <textarea name="description_en" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="panel4">
+                <div class="bs-docs-section">
+                    <div class="well">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">Имя *</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="name_it" class="form-control" placeholder="Italiano" required value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">SEO Meta Title *</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="meta_title_it" class="form-control" placeholder="Italiano" required value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">SEO Meta Description</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="meta_description_it" class="form-control" placeholder="Italiano" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">SEO Meta Keywords</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="meta_keywords_it" class="form-control" placeholder="Italiano" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <textarea name="description_it" placeholder="Italiano" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="panel5">
+                <div class="bs-docs-section">
+                    <div class="well">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">Имя *</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="name_ru" class="form-control" placeholder="Русский" required value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">SEO Meta Title *</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="meta_title_ru" class="form-control" placeholder="Русский" required value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">SEO Meta Description</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="meta_description_ru" placeholder="Русский" class="form-control" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">SEO Meta Keywords</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="meta_keywords_ru" placeholder="Русский" class="form-control" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="name">Описание</label>
+                            <div class="col-lg-10">
+                                <textarea name="description_ru" placeholder="Русский" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <div class="col-lg-12">
+                                <textarea name="description_info_product_ru" placeholder="Русский" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <textarea name="description_info_quality_ru" placeholder="Русский" class="form-control">Качество и экологическая информация</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <textarea name="description_packaging_ru" placeholder="Русский" class="form-control">Упаковка</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <textarea name="description_manual_ru" placeholder="Русский" class="form-control">Инструкция по уходу</textarea>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<?php
+echo $this->form()->closeTag();
+?>
+
+<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("description_ru");
+    //CKEDITOR.replace("description_info_product_ru");
+    /*CKEDITOR.replace("description_info_quality_ru");
+    CKEDITOR.replace("description_packaging_ru");
+    CKEDITOR.replace("description_manual_ru");*/
+</script>

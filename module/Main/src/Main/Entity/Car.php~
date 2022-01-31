@@ -1,0 +1,439 @@
+<?php
+
+namespace Main\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Car
+ *
+ * @ORM\Table(name="car")
+ * @ORM\Entity
+ */
+class Car
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=true)
+     */
+    private $userId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="marka", type="string", length=100, nullable=true)
+     */
+    private $marka;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="model", type="string", length=100, nullable=true)
+     */
+    private $model;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=100, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gos_number", type="string", length=100, nullable=true)
+     */
+    private $gosNumber;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="year", type="integer", nullable=true)
+     */
+    private $year;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="fuel_type", type="integer", nullable=true)
+     */
+    private $fuelType;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="engine_volume", type="integer", nullable=true)
+     */
+    private $engineVolume;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="power", type="integer", nullable=true)
+     */
+    private $power;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="region", type="string", length=250, nullable=true)
+     */
+    private $region;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="region_id", type="integer", nullable=true)
+     */
+    private $regionId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vin", type="string", length=50, nullable=true)
+     */
+    private $vin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="post", type="string", nullable=true)
+     */
+    private $post;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     * @return Car
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+    
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set marka
+     *
+     * @param string $marka
+     * @return Car
+     */
+    public function setMarka($marka)
+    {
+        $this->marka = $marka;
+    
+        return $this;
+    }
+
+    /**
+     * Get marka
+     *
+     * @return string 
+     */
+    public function getMarka()
+    {
+        return $this->marka;
+    }
+
+    /**
+     * Set model
+     *
+     * @param string $model
+     * @return Car
+     */
+    public function setModel($model)
+    {
+        $this->model = $model;
+    
+        return $this;
+    }
+
+    /**
+     * Get model
+     *
+     * @return string 
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Car
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set gosNumber
+     *
+     * @param string $gosNumber
+     * @return Car
+     */
+    public function setGosNumber($gosNumber)
+    {
+        $this->gosNumber = $gosNumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get gosNumber
+     *
+     * @return string 
+     */
+    public function getGosNumber()
+    {
+        return $this->gosNumber;
+    }
+
+    /**
+     * Set year
+     *
+     * @param integer $year
+     * @return Car
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
+    
+        return $this;
+    }
+
+    /**
+     * Get year
+     *
+     * @return integer 
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }
+
+    /**
+     * Set fuelType
+     *
+     * @param integer $fuelType
+     * @return Car
+     */
+    public function setFuelType($fuelType)
+    {
+        $this->fuelType = $fuelType;
+    
+        return $this;
+    }
+
+    /**
+     * Get fuelType
+     *
+     * @return integer 
+     */
+    public function getFuelType()
+    {
+        return $this->fuelType;
+    }
+
+    /**
+     * Set engineVolume
+     *
+     * @param integer $engineVolume
+     * @return Car
+     */
+    public function setEngineVolume($engineVolume)
+    {
+        $this->engineVolume = $engineVolume;
+    
+        return $this;
+    }
+
+    /**
+     * Get engineVolume
+     *
+     * @return integer 
+     */
+    public function getEngineVolume()
+    {
+        return $this->engineVolume;
+    }
+
+    /**
+     * Set power
+     *
+     * @param integer $power
+     * @return Car
+     */
+    public function setPower($power)
+    {
+        $this->power = $power;
+    
+        return $this;
+    }
+
+    /**
+     * Get power
+     *
+     * @return integer 
+     */
+    public function getPower()
+    {
+        return $this->power;
+    }
+
+    /**
+     * Set region
+     *
+     * @param string $region
+     * @return Car
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Set regionId
+     *
+     * @param integer $regionId
+     * @return Car
+     */
+    public function setRegionId($regionId)
+    {
+        $this->regionId = $regionId;
+
+        return $this;
+    }
+
+    /**
+     * Get regionId
+     *
+     * @return integer
+     */
+    public function getRegionId()
+    {
+        return $this->regionId;
+    }
+
+    /**
+     * Set vin
+     *
+     * @param string $vin
+     * @return Car
+     */
+    public function setVin($vin)
+    {
+        $this->vin = $vin;
+
+        return $this;
+    }
+
+    /**
+     * Get vin
+     *
+     * @return string
+     */
+    public function getVin()
+    {
+        return $this->vin;
+    }
+
+    /**
+     * Set post
+     *
+     * @param string $post
+     * @return Car
+     */
+    public function setPost($post)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return string
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    public function exchangeArray($data)
+    {
+        foreach($data as $key => $val){
+            if(property_exists($this, $key)){
+                $this->$key = ($val !== null) ? $val : null;
+            }
+        }
+    }
+
+    public function getArrayCopy()
+    {
+        return get_object_vars($this);
+    }
+}

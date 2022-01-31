@@ -1,0 +1,169 @@
+<?php
+
+namespace Main\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Reminder
+ *
+ * @ORM\Table(name="reminder")
+ * @ORM\Entity
+ */
+class Reminder
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=true)
+     */
+    private $userId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gos_number", type="string", length=10, nullable=false)
+     */
+    private $gosNumber;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="date", type="integer", nullable=false)
+     */
+    private $date;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     * @return Reminder
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+    
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set gosNumber
+     *
+     * @param string $gosNumber
+     * @return Reminder
+     */
+    public function setGosNumber($gosNumber)
+    {
+        $this->gosNumber = $gosNumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get gosNumber
+     *
+     * @return string 
+     */
+    public function getGosNumber()
+    {
+        return $this->gosNumber;
+    }
+
+    /**
+     * Set date
+     *
+     * @param integer $date
+     * @return Reminder
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return integer 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return Reminder
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function exchangeArray($data)
+    {
+        foreach($data as $key => $val){
+            if(property_exists($this, $key)){
+                $this->$key = ($val !== null) ? $val : null;
+            }
+        }
+    }
+
+    public function getArrayCopy()
+    {
+        return get_object_vars($this);
+    }
+}

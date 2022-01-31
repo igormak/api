@@ -1,0 +1,56 @@
+<?php
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        &times;
+    </button>
+    <ul></ul>')
+    ->setMessageSeparatorString('</li><li>')
+    ->setMessageCloseString('</li></ul></div>');
+
+echo $flash->render('error',   array('alert', 'alert-dismissable', 'alert-danger'));
+echo $flash->render('info',    array('alert', 'alert-dismissable', 'alert-info'));
+echo $flash->render('default', array('alert', 'alert-dismissable', 'alert-warning'));
+echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success'));
+?>
+
+<div class="col-md-12">
+    <div id="save">
+        <a href="<?php echo $this->url('admin/default', array('controller' => 'user', 'action' => 'add'));?>" class="btn btn-success">Add user</a>
+
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>E-Mail</th>
+            <th>Status</th>
+            <th>Date added</th>
+            <th>Function</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($users as $item){ ?>
+            <tr class="active">
+                <td style="width: 10px;"><?php echo $item->getId() ?></td>
+                <td><?php echo $item->getFirstname() . ' ' . $item->getLastname() ?></td>
+                <td><?php echo $item->getEmail() ?></td>
+                <td><?php echo $status = $item->getStatus() == 1 ? '<i class="glyphicon glyphicon-ok green"></i>' : '<i class="glyphicon glyphicon-remove red"></i>' ?></td>
+                <td><?php echo date("d.m.Y", $item->getSalt()) ?></td>
+                <td>
+                    <a href="<?php echo $this->url('admin/default', array('controller' => 'user', 'action' => 'edit', 'id' =>  $item->getId()));?>" class="btn btn-primary btn-xs">Edit</a>
+                    <a href="<?php echo $this->url('admin/default', array('controller' => 'user', 'action' => 'remove', 'id' =>  $item->getId()));?>" onclick="return confirm('Удалить запись?');" class="btn btn-danger btn-xs">Delete</a>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+    <?php
+
+    echo $this->paginationControl($users,
+        'Sliding',
+        'pagination_control', array('route' => $this->url('admin/default', array('controller' => 'user'))));
+
+    ?>
+</div>
